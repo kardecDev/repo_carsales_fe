@@ -1,5 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
-@use "tailwindcss";
-@use "primeicons/primeicons.css";
-@plugin "tailwindcss-primeui";
-@layer tailwind, primeng;
+$bacgroundcolor: #252525 !important;
+$fontcolor: #ffffff !important;
+
+body {
+    background-image: url('./assets/fundo_login_2.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    opacity: 0.75;
+}
+
+.p-card {
+    background-color: $bacgroundcolor;
+    color: $fontcolor;
+}
+
+.text-center {
+    text-align: center;
+}
