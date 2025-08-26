@@ -5,6 +5,8 @@ import { ButtonModule } from 'primeng/button';
 import { Requestlogin } from '../../resources/models/RequestLogin';
 import { FormsModule } from '@angular/forms';
 import { LoginService } from '../../resources/services/login';
+import { AlertService } from '../../resources/services/alert.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +20,11 @@ export class Login implements OnInit {
 
   public requestLogin!: Requestlogin;
 
-  constructor(private loginService: LoginService) { }
+  constructor(
+    private loginService: LoginService,
+    private alertService: AlertService,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
     this.requestLogin = new Requestlogin();
@@ -26,10 +32,10 @@ export class Login implements OnInit {
 
   public doLogin(): void {
     this.loginService.doLogin(this.requestLogin).subscribe(data => {
-      console.log(data);
+      this.router.navigate(['dashboard']);
     },
-      error => {
-        console.error(error);
+      Httperror => {
+        this.alertService.error(Httperror.error.message);
       })
   }
 }
